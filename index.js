@@ -2,13 +2,14 @@
 'use strict';
 
 var getVersion = require('git-repo-version');
+var addonInfo = require('./addon-info');
 
 module.exports = {
   name: 'joda-articles',
   config: function() {
     let joda = {
       features: {
-        articles: true
+        articles: addonInfo
       },
       versions: {}
     };
