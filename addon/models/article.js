@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import DS from 'ember-data';
 import Content from 'joda-core/models/content';
 
@@ -10,5 +11,9 @@ export default Content.extend({
   year: DS.attr('number'),
   doi: DS.attr('string'),
   arxiv: DS.attr('string'),
-  cds: DS.attr('string')
+  cds: DS.attr('string'),
+
+  withoutJournal: Ember.computed('journal', function() {
+    return !this.get('journal.id');
+  })
 });

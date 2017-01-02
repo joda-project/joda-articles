@@ -1,0 +1,25 @@
+<label class="label">Search</label>
+<p class="control is-expanded">
+  {{input class="input" value=search}}
+</p>
+<label class="label">Authors</label>
+<p class="control is-expanded">
+  {{#power-select-multiple options=model.authors selected=authorsList searchField="name" onchange=(action (mut authorsList)) as |author| }}
+    {{author.name}}
+  {{/power-select-multiple}}
+</p>
+<div class="control">
+  <div class="control is-grouped">
+    <p class="control is-expanded">
+      <label class="label">Journal</label>
+      {{#power-select options=model.journals selected=journalItem searchField="title" allowClear=true onchange=(action (mut journalItem)) as |journal|}}
+        {{journal.title}}
+      {{/power-select}}
+    </p>
+    <p class="control">
+      <label class="label">Year</label> {{input class="input" value=year}}
+    </p>
+  </div>
+</div>
+
+{{outlet}}
