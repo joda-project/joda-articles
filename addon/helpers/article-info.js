@@ -14,8 +14,7 @@ export function articleInfo([format, title, authorsList, journal, volume, pages,
 
   switch (format) {
     case 'standard':
-      /* falls through */
-    default:
+    default: {
       let output = ``;
       if (authors) {
         output += `${authors},<br>`;
@@ -26,6 +25,7 @@ export function articleInfo([format, title, authorsList, journal, volume, pages,
       }
       output += `.`;
       return Ember.String.htmlSafe(output);
+    }
   }
 }
 

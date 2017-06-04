@@ -1,8 +1,15 @@
 import Ember from 'ember';
 import layout from '../templates/components/article-entry';
 
-export default Ember.Component.extend({
+const DocumentEntry = Ember.Component.extend({
   layout,
+  session: Ember.inject.service(),
   tagName: 'article',
-  classNames: ['media']
+  classNames: ['media', 'is-vertical-centered']
 });
+
+DocumentEntry.reopenClass({
+  positionalParams: ['document']
+});
+
+export default DocumentEntry;
