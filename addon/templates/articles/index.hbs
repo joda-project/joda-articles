@@ -1,25 +1,42 @@
-<label class="label">Search</label>
-<p class="control is-expanded">
-  {{input class="input" value=search}}
-</p>
-<label class="label">Authors</label>
-<p class="control is-expanded">
-  {{#power-select-multiple options=model.authors selected=authorsList searchField="name" onchange=(action (mut authorsList)) as |author| }}
-    {{author.name}}
-  {{/power-select-multiple}}
-</p>
-<div class="control">
-  <div class="control is-grouped">
-    <p class="control is-expanded">
-      <label class="label">Journal</label>
-      {{#power-select options=model.journals selected=journalItem searchField="title" allowClear=true onchange=(action (mut journalItem)) as |journal|}}
-        {{journal.title}}
-      {{/power-select}}
-    </p>
-    <p class="control">
-      <label class="label">Year</label> {{input class="input" value=year}}
-    </p>
-  </div>
-</div>
+<section class="section">
+  <div class="container">
+    <h3>Articles</h3>
+    <div class="columns is-reversed">
+      {{#filter-sidebar search=search reset=(action "resetFilters")}}
+        <div class="panel-block">
+          <p class="control has-icon">
+            {{#multiple-select options=model.authors selected=authorsList placeholder="Authors" searchField="name" onchange=(action (mut authorsList)) as |author| }}
+              {{author.name}}
+            {{/multiple-select}}
+            <span class="icon">{{fa-icon "users"}}</span>
+          </p>
+        </div>
+        <div class="panel-block">
+          <div class="control is-grouped">
+            <p class="control has-icon">
+              {{#single-select options=model.journals selected=typeItem placeholder="Journal" searchField="name" onchange=(action (mut journalItem)) as |journal| }}
+                {{journal.title}}
+              {{/single-select}}
+              <span class="icon">{{fa-icon "book"}}</span>
+            </p>
+            <p class="control">
+              {{input class="input" value=year placeholder="Year"}}
+            </p>
+          </div>
+        </div>
+        <div class="panel-block">
+          <p class="control has-icon">
+            {{#multiple-select options=model.tags selected=tagsList placeholder="Tags" searchField="name" onchange=(action (mut tagsList)) as |tag| }}
+              {{tag.name}}
+            {{/multiple-select}}
+            <span class="icon">{{fa-icon "tag"}}</span>
+          </p>
+        </div>
+      {{/filter-sidebar}}
 
-{{outlet}}
+      <div class="column">
+        {{outlet}}
+      </div>
+    </div>
+  </div>
+</section>

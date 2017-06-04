@@ -1,8 +1,8 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import Content from 'joda-core/models/content';
+import Document from 'joda-core/models/document';
 
-export default Content.extend({
+export default Document.extend({
   authors: DS.hasMany('author'),
   journal: DS.belongsTo('journal'),
   pages: DS.attr('string'),

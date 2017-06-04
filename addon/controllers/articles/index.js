@@ -1,19 +1,15 @@
 import Ember from 'ember';
+import DocumentIndexController from 'joda-core/controllers/document/index';
 
-export default Ember.Controller.extend({
-  search: null,
+export default DocumentIndexController.extend({
+  filters: ['search', 'tags', 'authors', 'journal', 'year'],
+
   authors: null,
   journal: null,
   year: null,
 
   authorsList: [],
   journalItem: null,
-
-  searchObserver: Ember.observer('search', function() {
-    if (this.get('search') === "") {
-      this.set('search', null);
-    }
-  }),
 
   authorsObserver: Ember.observer('authors', function() {
     let authors = this.get('authors');

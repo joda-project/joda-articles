@@ -1,78 +1,82 @@
-<h3>Edit article</h3>
-<form id="article-edit" {{action "save" on="submit"}}>
-  <h4>Basic info</h4>
-  <label class="label">Title</label>
-  <p class="control">
-    {{input class="input" type="text" value=model.title}}
-  </p>
-  <label class="label">Authors</label>
-  <p class="control">
-    {{#multiple-select options=commonModel.authors selected=model.authors searchField="name" modelName="author" onchange=(action (mut model.authors)) as |author| }}
-      {{author.name}}
-    {{/multiple-select}}
-  </p>
+<section class="section">
+  <div class="container">
+    <h3>Edit article</h3>
+    <form id="article-edit" {{action "save" on="submit"}}>
+      <h4>Basic info</h4>
+      <label class="label">Title</label>
+      <p class="control">
+        {{input class="input" type="text" value=model.title}}
+      </p>
+      <label class="label">Authors</label>
+      <p class="control">
+        {{#multiple-select options=commonModel.authors selected=model.authors searchField="name" modelName="author" onchange=(action (mut model.authors)) as |author| }}
+          {{author.name}}
+        {{/multiple-select}}
+      </p>
 
-  <label class="label">Journal</label>
-  <p class="control">
-    {{#single-select options=commonModel.journals selected=model.journal searchField="title" modelName="journal" onchange=(action (mut model.journal)) as |journal|}}
-      {{journal.title}}
-    {{/single-select}}
-  </p>
-  <div class="control">
-    <div class="control is-grouped">
-      <p class="control is-expanded">
-        {{input class="input" value=model.pages placeholder="Pages" disabled=model.withoutJournal}}
+      <label class="label">Journal</label>
+      <p class="control">
+        {{#single-select options=commonModel.journals selected=model.journal searchField="title" modelName="journal" onchange=(action (mut model.journal)) as |journal|}}
+          {{journal.title}}
+        {{/single-select}}
       </p>
-      <p class="control is-expanded">
-        {{input class="input" value=model.volume placeholder="Volume" disabled=model.withoutJournal}}
+      <div class="control">
+        <div class="control is-grouped">
+          <p class="control is-expanded">
+            {{input class="input" value=model.pages placeholder="Pages" disabled=model.withoutJournal}}
+          </p>
+          <p class="control is-expanded">
+            {{input class="input" value=model.volume placeholder="Volume" disabled=model.withoutJournal}}
+          </p>
+          <p class="control is-expanded">
+            {{input class="input" value=model.issue placeholder="Issue" disabled=model.withoutJournal}}
+          </p>
+          <p class="control is-expanded">
+            {{input class="input" value=model.year placeholder="Year" disabled=model.withoutJournal}}
+          </p>
+        </div>
+      </div>
+
+      <h4>Metadata</h4>
+      <p class="control">
+        <label class="checkbox">
+          {{input type="checkbox" checked=model.validated}}
+          Validated
+        </label>
       </p>
-      <p class="control is-expanded">
-        {{input class="input" value=model.issue placeholder="Issue" disabled=model.withoutJournal}}
+      <p class="control">
+        <label class="checkbox">
+          {{input type="checkbox" checked=model.public}}
+          Public
+        </label>
       </p>
-      <p class="control is-expanded">
-        {{input class="input" value=model.year placeholder="Year" disabled=model.withoutJournal}}
+      <label class="label">Tags</label>
+      <p class="control">
+        {{#multiple-select options=commonModel.tags selected=model.tags searchField="name" modelName="tag" onchange=(action (mut model.tags)) as |tag| }}
+          {{tag.name}}
+        {{/multiple-select}}
       </p>
-    </div>
+
+      <h4>Remote IDs</h4>
+      <label class="label">DOI</label>
+      <p class="control">
+        {{input class="input" type="text" value=model.doi}}
+      </p>
+      <label class="label">Arxiv ID</label>
+      <p class="control">
+        {{input class="input" type="text" value=model.arxiv}}
+      </p>
+      <label class="label">CDS ID</label>
+      <p class="control">
+        {{input class="input" type="text" value=model.cds}}
+      </p>
+
+      <p class="control">
+        <button class="button is-primary" type="submit">Save</button>
+        {{#link-to 'articles.view' model class="button is-link" activeClass="" }}
+          Cancel
+        {{/link-to}}
+      </p>
+    </form>
   </div>
-
-  <h4>Metadata</h4>
-  <p class="control">
-    <label class="checkbox">
-      {{input type="checkbox" checked=model.validated}}
-      Validated
-    </label>
-  </p>
-  <p class="control">
-    <label class="checkbox">
-      {{input type="checkbox" checked=model.public}}
-      Public
-    </label>
-  </p>
-  <label class="label">Tags</label>
-  <p class="control">
-    {{#multiple-select options=commonModel.tags selected=model.tags searchField="name" modelName="tag" onchange=(action (mut model.tags)) as |tag| }}
-      {{tag.name}}
-    {{/multiple-select}}
-  </p>
-
-  <h4>Remote IDs</h4>
-  <label class="label">DOI</label>
-  <p class="control">
-    {{input class="input" type="text" value=model.doi}}
-  </p>
-  <label class="label">Arxiv ID</label>
-  <p class="control">
-    {{input class="input" type="text" value=model.arxiv}}
-  </p>
-  <label class="label">CDS ID</label>
-  <p class="control">
-    {{input class="input" type="text" value=model.cds}}
-  </p>
-
-  <p class="control">
-    <button class="button is-primary" type="submit">Save</button>
-    {{#link-to 'articles.view' model class="button is-link" activeClass="" }}
-      Cancel
-    {{/link-to}}
-  </p>
-</form>
+</section>

@@ -25,7 +25,7 @@ test('it renders', function(assert) {
     }));
   });
 
-  this.render(hbs `{{article-entry article=article}}`);
+  this.render(hbs `{{article-entry document=article}}`);
 
   assert.equal(this.$().text().trim(), 'Test Article,.');
 

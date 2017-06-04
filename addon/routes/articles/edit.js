@@ -10,7 +10,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   },
 
   model: function(params) {
-    return this.store.findRecord('article', params.resource_id);
+    return this.store.findRecord('article', params.document_id);
   },
 
   actions: {
@@ -39,7 +39,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
     save() {
       let controller = this.get('controller');
-      let item = this.get('controller.model');
+      let item = controller.get('model');
 
       let promises = [];
       item.get('authors').forEach((author) => {

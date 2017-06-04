@@ -1,22 +1,6 @@
-import Ember from 'ember';
+import DocumentIndexIndexRoute from 'joda-core/routes/document/index/index';
 
-export default Ember.Route.extend({
-  model: function(params) {
-    Ember.$.extend(params, this.paramsFor('articles.index'));
-
-    var properties = {};
-    if (params.search) {
-      properties['search'] = params.search;
-    }
-
-    if (params.authors) {
-      properties['authors'] = params.authors;
-    }
-
-    if (params.journal) {
-      properties['journal'] = params.journal;
-    }
-
-    return this.get('store').query('article', properties);
-  }
+export default DocumentIndexIndexRoute.extend({
+  pageRoot: 'articles',
+  documentType: 'article'
 });

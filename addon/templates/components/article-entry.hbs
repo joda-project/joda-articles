@@ -1,18 +1,25 @@
 <div class="media-content">
   <div class="content">
     <p>
-      {{article-info '' article.title article.authors article.journal.title article.volume article.pages article.year }}
+      {{article-info '' document.title document.authors document.journal.title document.volume document.pages document.year }}
+      <br>
+      {{#each document.tags as |tag|}}
+        {{tag-label tag}}
+      {{/each}}
+      {{#link-to 'articles.edit' document class="icon is-small"}}
+        {{fa-icon "pencil"}}
+      {{/link-to}}
     </p>
   </div>
 </div>
 <div class="media-right has-text-centered">
-  <span class="icon is-medium"><i class="fa fa-file-pdf-o"></i></span>
-  <nav class="level">
-    <a class="level-item has-text-centered">
-      <span class="icon"><i class="fa fa-comment"></i></span>
-    </a>
-    {{#link-to 'articles.edit' article class="level-item has-text-centered" activeClass="" }}
-      <span class="icon"><i class="fa fa-pencil"></i></span>
-    {{/link-to}}
-  </nav>
+  {{#each document.files as |file|}}
+    {{#if file.public}}
+      {{file-icon-link file}}
+    {{else}}
+      {{#if session.isAuthenticated}}
+        {{file-icon-link file}}
+      {{/if}}
+    {{/if}}
+  {{/each}}
 </div>

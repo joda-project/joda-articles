@@ -1,11 +1,7 @@
-import Ember from 'ember';
+import DocumentIndexRoute from 'joda-core/routes/document/index';
 
-export default Ember.Route.extend({
+export default DocumentIndexRoute.extend({
   queryParams: {
-    'search': {
-      refreshModel: true,
-      replace: true
-    },
     'authors': {
       refreshModel: true,
       replace: true

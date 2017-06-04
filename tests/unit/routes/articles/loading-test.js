@@ -3,9 +3,9 @@ import {
   test
 } from 'ember-qunit';
 
-moduleFor('route:articles/index/index', 'Unit | Route | articles/index/index', {
+moduleFor('route:articles/loading', 'Unit | Route | articles/loading', {
   // Specify the other units that are required for this test.
-  needs: ['service:session']
+  // needs: ['controller:foo']
 });
 
 test('it exists', function(assert) {

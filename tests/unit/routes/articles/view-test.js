@@ -5,7 +5,7 @@ import {
 
 moduleFor('route:articles/view', 'Unit | Route | articles/view', {
   // Specify the other units that are required for this test.
-  // needs: ['controller:foo']
+  needs: ['service:session']
 });
 
 test('it exists', function(assert) {

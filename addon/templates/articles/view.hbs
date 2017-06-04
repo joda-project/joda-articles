@@ -1,10 +1,14 @@
-<h3>{{model.title}}</h3>
+<section class="section">
+  <div class="container">
+    <h3>{{model.title}}</h3>
 
-<p class="control">
-  {{#link-to 'articles.edit' model class="button is-primary" activeClass="" }}
-    Edit
-  {{/link-to}}
-  {{#link-to 'articles.index' class="button is-link" activeClass="" }}
-    Back to all articles
-  {{/link-to}}
-</p>
+    <p class="control">
+      {{#link-to 'articles.edit' model class="button is-primary" activeClass="" }}
+        Edit
+      {{/link-to}}
+      {{#link-to 'articles.index' class="button is-link" activeClass="" }}
+        Back to all articles
+      {{/link-to}}
+    </p>
+  </div>
+</section>
