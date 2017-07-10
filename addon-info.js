@@ -3,7 +3,7 @@
 
 module.exports = {
   route: 'articles',
-  title: 'Articles',
+  title: 'articles.articles',
 
   item: 'article',
   routesList: []

@@ -1,8 +1,8 @@
-{{#section-content-list title="Articles"}}
+{{#section-content-list title=(t 'articles.articles')}}
   {{#filter-sidebar search=search sortTypes=sortTypes sortSelected=sortSelected reset=(action "resetFilters")}}
     <div class="panel-block">
       <p class="control has-icons-left">
-        {{#multiple-select options=model.authors selected=authorsList placeholder="Authors" searchField="name" onchange=(action (mut authorsList)) as |author| }}
+        {{#multiple-select options=model.authors selected=authorsList placeholder=(t 'articles.authors') searchField="name" onchange=(action (mut authorsList)) as |author| }}
           {{author.name}}
         {{/multiple-select}}
         <span class="icon is-left">{{fa-icon "users"}}</span>
@@ -11,13 +11,13 @@
     <div class="panel-block">
       <div class="control is-grouped">
         <p class="control has-icons-left">
-          {{#single-select options=model.journals selected=typeItem placeholder="Journal" searchField="name" onchange=(action (mut journalItem)) as |journal| }}
+          {{#single-select options=model.journals selected=typeItem placeholder=(t 'articles.journal') searchField="name" onchange=(action (mut journalItem)) as |journal| }}
             {{journal.title}}
           {{/single-select}}
           <span class="icon is-left">{{fa-icon "book"}}</span>
         </p>
         <p class="control">
-          {{input class="input" value=year placeholder="Year"}}
+          {{input class="input" value=year placeholder=(t 'articles.journal-year')}}
         </p>
       </div>
     </div>
