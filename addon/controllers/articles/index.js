@@ -1,17 +1,20 @@
-import Ember from 'ember';
+import { observer } from '@ember/object';
 import DocumentIndexController from 'joda-core/controllers/document/index';
 
 export default DocumentIndexController.extend({
-  filters: ['search', 'tags', 'authors', 'journal', 'year', 'sort'],
+  init() {
+    this.filters = ['search', 'tags', 'authors', 'journal', 'year', 'sort'];
+    this.authorsList = [];
+    this._super(...arguments);
+  },
 
   authors: null,
   journal: null,
   year: null,
 
-  authorsList: [],
   journalItem: null,
 
-  authorsObserver: Ember.observer('authors', function() {
+  authorsObserver: observer('authors', function() {
     let authors = this.get('authors');
     if (!authors) {
       return;
@@ -26,7 +29,7 @@ export default DocumentIndexController.extend({
     this.set('authorsList', result);
   }),
 
-  authorsListObserver: Ember.observer('authorsList', function() {
+  authorsListObserver: observer('authorsList', function() {
     let list = [];
     for (let author of this.get('authorsList')) {
       if (author) {
@@ -36,7 +39,7 @@ export default DocumentIndexController.extend({
     this.set('authors', list.length ? list.join(',') : null);
   }),
 
-  journalObserver: Ember.observer('journal', function() {
+  journalObserver: observer('journal', function() {
     let journal = this.get('journal');
     if (!journal) {
       return;
@@ -48,7 +51,7 @@ export default DocumentIndexController.extend({
     }
   }),
 
-  journalItemObserver: Ember.observer('journalItem', function() {
+  journalItemObserver: observer('journalItem', function() {
     let journal = this.get('journalItem');
     this.set('journal', journal ? journal.get('id') : null);
   })

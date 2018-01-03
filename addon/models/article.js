@@ -1,6 +1,6 @@
-import Ember from 'ember';
 import DS from 'ember-data';
 import Document from 'joda-core/models/document';
+import { computed } from '@ember/object';
 
 export default Document.extend({
   authors: DS.hasMany('author'),
@@ -13,7 +13,7 @@ export default Document.extend({
   arxiv: DS.attr('string'),
   cds: DS.attr('string'),
 
-  withoutJournal: Ember.computed('journal', function() {
+  withoutJournal: computed('journal', function() {
     return !this.get('journal.id');
   })
 });

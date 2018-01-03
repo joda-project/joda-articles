@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
+import { htmlSafe } from '@ember/string';
 import {
   articleAuthors
 } from 'joda-articles/helpers/article-authors';
@@ -24,9 +25,9 @@ export function articleInfo([format, title, authorsList, journal, volume, pages,
         output += `${journal} <b>${volume}</b>, ${pages} (${year})`;
       }
       output += `.`;
-      return Ember.String.htmlSafe(output);
+      return htmlSafe(output);
     }
   }
 }
 
-export default Ember.Helper.helper(articleInfo);
+export default helper(articleInfo);

@@ -1,16 +1,25 @@
 ---
 language: node_js
 node_js:
-  - "6"
-  - "7"
+  - "8"
+  - "9"
 
 sudo: false
+dist: trusty
+
+addons:
+  chrome: stable
+
 cache: yarn
 
 env:
-  - EMBER_TRY_SCENARIO=ember-release COVERAGE=true
-  - EMBER_TRY_SCENARIO=ember-beta
-  - EMBER_TRY_SCENARIO=ember-canary
+  global:
+    # See https://git.io/vdao3 for details.
+    - JOBS=1
+  matrix:
+    - EMBER_TRY_SCENARIO=ember-default COVERAGE=true
+    - EMBER_TRY_SCENARIO=ember-beta
+    - EMBER_TRY_SCENARIO=ember-canary
 
 matrix:
   fast_finish: true
@@ -18,15 +27,14 @@ matrix:
     - env: EMBER_TRY_SCENARIO=ember-canary
 
 before_script:
-  - yarn global add codecov phantomjs-prebuilt
-  - phantomjs --version
-  - yarn upgrade joda-project/joda-core
-  - yarn upgrade joda-project/joda-i18n
+  - yarn global add codecov
+  - yarn add joda-project/joda-core --dev
+  - yarn add joda-project/joda-i18n
 
 script:
   # Usually, it's ok to finish the test scenario without reverting
   #  to the addon's original dependency state, skipping "cleanup".
-  - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO test --skip-cleanup
+  - node_modules/.bin/ember try:one $EMBER_TRY_SCENARIO --skip-cleanup
 
 after_success:
   - codecov -f coverage/lcov.info

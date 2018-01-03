@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { run } from '@ember/runloop';
 import {
   moduleForComponent,
   test
@@ -18,7 +18,7 @@ test('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
 
-  Ember.run(() => {
+  run(() => {
     let store = this.get('store');
     this.set('article', store.createRecord('article', {
       title: 'Test Article'

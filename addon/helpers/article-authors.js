@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 const formats = {
   standard: {
@@ -56,4 +56,4 @@ export function articleAuthors([authors, format]) {
   }
 }
 
-export default Ember.Helper.helper(articleAuthors);
+export default helper(articleAuthors);
